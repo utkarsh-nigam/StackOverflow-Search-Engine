@@ -21,7 +21,7 @@ To prepare the dataset, we began by identifying and eliminating null values. The
 ![Alt text](/assets/img/preprocessing2.png?raw=true "")
 
 ## Representation of Questions Text to Vector Space
-![Alt text](/assets/img/emebedding.jpeg?raw=true "")
+![Alt text](/assets/img/embedding.jpeg?raw=true "")
 
 ## Results
 ![Alt text](/assets/img/Results.png?raw=true "")
