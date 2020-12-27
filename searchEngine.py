@@ -2,7 +2,7 @@ import os
 import warnings
 warnings.filterwarnings("ignore")
 
-packageList=["nltk","spacy","gensim"]
+packageList=["nltk","pandas","spacy","gensim"]
 for package in packageList:
     try:
         command_string = "pip install " + package
@@ -91,37 +91,18 @@ def showResults(userQuery):
     search_string = ' '.join(normalize(tokenize_text(search_string)))
     results_returned = "5"
     search_vect = np.array([question_to_vec(search_string, w2v_model)])  # Vectorize the user query
-
     cosine_similarities = pd.Series(cosine_similarity(search_vect, all_title_embeddings)[0])
-
     cosine_similarities = cosine_similarities *(1 + 0.2 * data.overall_scores_normalized)
-    print("\nEntered Query: ", str(userQuery))
 
-    print("\n\nFollowing are top 5 results:")
-    count=1
+    resultsDict={"Questions":[],"Votes":[],"Web URL":[],"S.I.":[]}
+
     for i, j in cosine_similarities.nlargest(int(results_returned)).iteritems():
-        print(50*"-")
-        print("\t\tResult: #",count)
-        print(50 * "-")
-        print("Post Title: ",data.original_title[i])
-        print("Web URL: ",data.question_url[i])
-        print("Similarity Score: ", str(j))
-        print("StackOverFlow Votes: ", str(data.overall_scores[i]))
-        print("\n")
-        count+=1
 
+        resultsDict["Questions"].append(data.original_title[i])
+        resultsDict["Votes"].append(data.overall_scores[i])
 
-continueFlag=1
-while continueFlag==1:
-    print(50*"*")
-    print("\t\tWelcome to Simply Stacked")
-    print(50 * "*")
-    try:
-        print("Enter 1 to search a question\nEnter 0 to Exit\nEnter your response: ")
-        continueFlag=int(input())
-        if continueFlag==1:
-            print("\n## Enter the question: ")
-            inputQuery=str(input())
-            showResults(inputQuery)
-    except:
-        continueFlag=1
+        URL="<a href="+data.question_url[i]+">"+data.question_url[i]+"</a>"
+        resultsDict["Web URL"].append(URL)
+        resultsDict["S.I."].append(j)
+
+    return resultsDict
