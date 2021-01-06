@@ -13,7 +13,7 @@ Though discovered on Kaggle, the dataset is an accumulation of archived data sou
 
 
 ## Text Pre-Processing
-To prepare the dataset, we began by identifying and eliminating null values. Then, synonymous and duplicate posts were compiled and clustered to aggregate scores by appropriate votes. Column-wise pre-processing enabled tokenization that paved the way to remove stop-words from both the title and question, punctuation marks, tags from the header, paragraph, and code. The overall score matrices were then normalized and multi-label classification was converted into one hot encoded tag column to avoid biases in machine learning classification.
+To prepare the dataset, we began by identifying and eliminating null values. Then, synonymous and duplicate posts were compiled and clustered to aggregate scores by appropriate votes. Column-wise pre-processing enabled tokenization that paved the way to remove stop-words from both the title and question, punctuation marks, tags from the header, paragraph, and code.
 
 
 ![Alt text](/assets/img/preprocessing1.png?raw=true "")
